@@ -1,16 +1,14 @@
-import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import BirthdayCard from './assets/components/BirthdayCard';
+import { StyleSheet, Text, View } from 'react-native';
 
-const App = () => {
+export default function App() {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
+      <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
-      <BirthdayCard />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -20,5 +18,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-export default App;
