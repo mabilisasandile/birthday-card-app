@@ -194,8 +194,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         cursor: 'pointer',
-        margin: 40,
-        padding: 20,
+        marginTop: 10,
+        marginBottom: 10,
     },
     buttonFocused: {
         borderColor: 'blue',
