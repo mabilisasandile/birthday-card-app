@@ -14,6 +14,8 @@ const BirthdayCard = () => {
     const [showStars, setShowStars] = useState(false);
     const starScale = useRef(new Animated.Value(0)).current;
     const spinValue = useRef(new Animated.Value(0)).current;
+    const [isFocused, setIsFocused] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         Animated.loop(
@@ -44,12 +46,43 @@ const BirthdayCard = () => {
         }).start();
     };
 
+
+    //Handle button events
     const handleClose = () => {
         setShowCard(false);
     }
 
     const handleSubmit = () => {
         handleShowCard();
+    }
+
+    const handleFocus = () => {
+        setIsFocused(true);
+    };
+
+    const handleBlur = () => {
+        setIsFocused(false);
+    };
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+
+    const buttonStyles = [
+        styles.button,
+        isFocused && styles.buttonFocused,
+        isHovered && styles.buttonHovered,
+    ];
+
+    const handleClearStates =()=>{
+        setRecipientName('');
+        setSenderName('');
+        setMessage('');
+        setAge(0);
     }
 
     return (
@@ -86,7 +119,17 @@ const BirthdayCard = () => {
                     value={age}
                     onChangeText={(text) => setAge(text)} />
 
-                <Button title="Create Birthday Card" onPress={handleSubmit} style={styles.button} />
+                <Button
+                    title="Create Birthday Card"
+                    onPress={handleSubmit}
+                    style={styles.button}
+                />
+
+                <Button
+                    title="Clear Form"
+                    onPress={handleClearStates}
+                    style={styles.button}
+                />
             </View >
 
             <View style={styles.container}>
@@ -150,6 +193,16 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 18,
         fontWeight: 'bold',
+        cursor: 'pointer',
+        margin: 40,
+        padding: 20,
+    },
+    buttonFocused: {
+        borderColor: 'blue',
+        borderWidth: 2,
+    },
+    buttonHovered: {
+        backgroundColor: 'lightgray',
     },
     card: {
         flex: 1,
